@@ -1,0 +1,613 @@
+<h1>The OmniCode Specification:</h1>
+<h2>Description for the New Net</h2>
+<h2 id="preamble">Version 0.1.8</h2>
+<p>The OmniCode is a fun little way to present personal information and the spiritual successor to <a href="http://geekcode.com">GeekCode</a>, now a respectable, largely forgotten part of Internet history. It is designed to be both human- and machine-readable, condensed, yet descriptive; it can be put in your forum and email signatures, in your profile blurb, on your homepage and pretty much everywhere else you might desire.</p>
+<p>Several tools exist to both create and decode OmniCode, the most notable of which is <a href="http://uftoolbox.info/omnidecoder/omnidecode.html">IByte's OmniCode Decoder</a>. In general, the creation of OmniCode-processing tools is free for all, provided that your implementation doesn't break the specification in some horrible way. Making additions to the OmniCode on your own is also strongly discouraged to avoid breaking other people's implementations.</p>
+
+<h3 id="rules">General Rules</h3>
+<p>The basic rules for assembling one's OmniCode are as follows:</p>
+<ul>
+<li>The codes can be in any order;</li>
+<li>All codes are optional. You do not need to disclose anything you do not want to;</li>
+<li>The codes and their attributes are case-sensitive;</li>
+<li>Different codes are separated by a space or a newline;</li>
+<li>If you want to split a particularly long code into two lines, then the next line must begin with a caret sign ('^');</li>
+<li>Multiple codes for a person are joined together with an ampersand ('&amp;'). The code itself is not repeated;</li>
+<li>Modifiers get more and more specific as they are added to the end of a code. Modifiers are separated by a period ('.');</li>
+<li>Several modifiers applying to the same attribute are joined with a semicolon (';');</li>
+<li>Any spaces present in modifiers are replaced with an underscore ('_');</li>
+</ul>
+<p>Some attributes are akin to keywords and can be applied to any code. Those are:</p>
+<table>
+<tr><td>!</td><td>Negation (this code does not apply to me)</td></tr>
+<tr><td>+</td><td>This code applies to me better than normal</td></tr>
+<tr><td>-</td><td>This code applies to me worse than normal</td></tr>
+<tr><td>=</td><td>The average value applies</td></tr>
+<tr><td>*</td><td>All possible values apply</td></tr>
+<tr><td>?</td><td>Unknown or unsure</td></tr>
+<tr><td>(n)</td><td>Level of accomplishment (0-9)</td></tr>
+<tr><td>^(n)</td><td>Aspiration to level of accomplishment (0-9)</td></tr>
+</table>
+
+<h2>Code Listing</h2>
+<h3 id="sx">sx — Gender</h3>
+<p>Your gender. Not to confuse with <a href="#sp">sexual preference</a>, below. Possible values:</p>
+<table>
+<tr><td>sxy</td><td>Male</td></tr>
+<tr><td>sxx</td><td>Female</td></tr>
+<tr><td>sx*</td><td>Hermaphrodite</td></tr>
+<tr><td>sx!</td><td>Genderless</td></tr>
+<tr><td>sx~</td><td>Transgender</td></tr>
+</table>
+
+<h3 id="cm">cm — Height</h3>
+<p>Your height in centimeters. One inch is approximately 2.54cm. Fairly straightforward. Automated tools may also calculate and display the feet-inch equivalent. Examples:</p>
+<table>
+<tr><td>cm170</td><td>170 centimeters (or about 5'7")</td></tr>
+<tr><td>cm150.With_hat</td><td>150 centimeters tall, but with the hat</td></tr>
+</table>
+
+<h3 id="kg">kg — Weight</h3>
+<p>Your weight in kilograms. One pound is approximately 0.45kg. Also fairly straightforward. Automated tools may also calculate and display the equivalent in pounds. Example:</p>
+<table>
+<tr><td>kg70</td><td>70 kilograms (or about 31.5lbs.)</td></tr>
+</table>
+
+<h3 id="sk">sk — Skin Color</h3>
+<p>The color of your skin in hexadecimal notation. A <a href="http://colorpicker.com">color picker tool</a> can be used to find a suitable approximation. Automated tools may render a sample of the color in a box for immediate reference. Attribute joining can be used to represent more complex cases (such as some parts of the body having a different color from the rest of the body). Examples:</p>
+<table>
+<tr><td>skffffff</td><td>Pure white</td></tr>
+<tr><td>sk000000</td><td>Pure black</td></tr>
+<tr><td>skead5c9</td><td>A lighter skin tone</td></tr>
+<tr><td>sk9e684f</td><td>A darker skin tone</td></tr>
+<tr><td>ske7dbbf&amp;efc7a7.arms;face</td><td>a T-shirt tan</td></tr>
+</table>
+
+<h3 id="ha">ha — Hair Color</h3>
+<p>The color of your hair in hexadecimal notation. See <a href="#sk">"skin color"</a> above for reference.</p>
+
+<h3 id="ey">ey — Eye Color</h3>
+<p>The color of your eyes in hexadecimal notation. See <a href="#sk">"skin color"</a> above for reference. This is not for <a href="#es">eyesight</a> — see below. The <em>{L}</em> and <em>{R}</em> attributes can be used to represent more complex cases (such as eyes having different colors). Examples:</p>
+<table>
+<tr><td>ey84a4f0</td><td>Blue eyes</td></tr>
+<tr><td>ey543408</td><td>Brown eyes</td></tr>
+<tr><td>ey{R}ey543408&amp;{L}ey3a6e2d</td><td>One brown and one green eye</td></tr>
+</table>
+
+<h3 id="es">es — Eyesight</h3>
+<p>The <em>{L}</em> and <em>{R}</em> attributes can be used to represent more complex cases (such as different eyesight for different eyes). Possible values:</p>
+<table>
+<tr><td>es=</td><td>20/20 vision</td></tr>
+<tr><td>es+</td><td>Better than 20/20 vision</td></tr>
+<tr><td>esO</td><td>Nearsighted</td></tr>
+<tr><td>eso</td><td>Farsighted</td></tr>
+<tr><td>es#</td><td>Astigmatic</td></tr>
+<tr><td>es~</td><td>Colorblind</td></tr>
+<tr><td>es!</td><td>Blind</td></tr>
+</table>
+
+<h3 id="sp">sp — Sexual Preference</h3>
+<p>Your sexual preference. You may elaborate on this using the period notation. Examples:</p>
+<table>
+<tr><td>sp=</td><td>Heterosexual</td></tr>
+<tr><td>sp&lt;</td><td>Homosexual</td></tr>
+<tr><td>sp*</td><td>Bisexual</td></tr>
+<tr><td>sp!</td><td>Asexual</td></tr>
+<tr><td>sp!.Human</td><td>Non-humans</td></tr>
+<tr><td>spO</td><td>Other, please specify with a period (i.e. spO.cars)</td></tr>
+</table>
+
+<h3 id="ag">Ag — Age</h3>
+<p>Your birth date. You may make it as accurate as you wish, in the order of year, month, day, hour, minute, using the period notation. The minimum is to specify the year. Automated tools may also calculate and display the current age of the code bearer. Examples:</p>
+<table>
+<tr><td>Ag1992</td><td>I was born in 1992</td></tr>
+<tr><td>Ag1970.Jan.1.00.00</td><td>I was born at the start of the UNIX Epoch</td></tr>
+</table>
+
+<h3 id="an">an — Ancestry</h3>
+<p>Indicates your ancestry, or, simply put, who your parents (and their parents) were. Several may apply. Examples:</p>
+<table>
+<tr><td>anA</td><td>African</td></tr>
+<tr><td>anC</td><td>Celt</td></tr>
+<tr><td>anE</td><td>European</td></tr>
+<tr><td>anO</td><td>Asian</td></tr>
+<tr><td>anP</td><td>Polynesian and other Islander</td></tr>
+<tr><td>anI</td><td>Native (North and South) American</td></tr>
+<tr><td>anU</td><td>other aboriginal</td></tr>
+<tr><td>anE&amp;O.China</td><td>part European, part Chinese</td></tr>
+<tr><td>an?</td><td>Unsure</td></tr>
+<tr><td>an!</td><td>Nonhuman</td></tr>
+</table>
+
+<h3 id="hd">hd — Handedness</h3>
+<p>Indicates your handedness. Possible values:</p>
+<table>
+<tr><td>hdd</td><td>Right-handed</td></tr>
+<tr><td>hds</td><td>Left-handed</td></tr>
+<tr><td>hda</td><td>Ambidextrous (both are equal in use)</td></tr>
+<tr><td>hdn</td><td>Ambi-sinistral (neither is any good)</td></tr>
+<tr><td>hd!</td><td>No hands</td></tr>
+</table>
+
+<h3 id="lo">Lo — Longitude and Latitude</h3>
+<p>Your current, primary or usual location. You can be as accurate or general as you feel comfortable with. The format is the <a href="http://maps.google.com">Google Maps</a> format and can be easily obtained from it (just search for your address, right-click on the location, select <em>"What's here?"</em> from the drop-down menu and copy the coordinates from the search bar). Automated tools may also look up the location and present it on a map. Example:</p>
+<table>
+<tr><td>Lo49.257498,-123.181458</td><td>Vancouver, BC, Canada</td></tr>
+</table>
+
+<h3 id="gm">GM — Time Zone</h3>
+<p>The time zone and daylight saving settings in your region. This code consists of five parts:</p>
+<ul>
+<li>The code symbol, <em>GM</em>;</li>
+<li>A plus ('+') or minus ('-') sign, or nothing if you are in the UTC;</li>
+<li>The difference from UTC in hours;</li>
+<li>A <em>'D'</em> if daylight saving is practiced in your region, nothing if not;</li>
+<li>A hemisphere symbol (<em>'S'</em> for southern, <em>'N'</em> for northern).</li>
+</ul>
+<p>Examples:</p>
+<table>
+<tr><td>GM+2DN</td><td>UTC+2 hours, DST in a Northern hemisphere summer</td></tr>
+<tr><td>GM-10DS</td><td>UTC-10 hours, DST in a Southern hemisphere summer</td></tr>
+<tr><td>GM0N</td><td>UTC, no DST in a Northern hemisphere summer</td></tr>
+</table>
+
+<h3 id="zo">Zo — Astrological Sign</h3>
+<p>Your astrological (zodiac) sign(s). Western astrological signs:</p>
+<table>
+<tr><td>ZoQ</td><td>Aquarius</td></tr>
+<tr><td>ZoP</td><td>Pisces</td></tr>
+<tr><td>ZoA</td><td>Aries</td></tr>
+<tr><td>ZoT</td><td>Taurus</td></tr>
+<tr><td>ZoG</td><td>Gemini</td></tr>
+<tr><td>ZoC</td><td>Cancer</td></tr>
+<tr><td>ZoL</td><td>Leo</td></tr>
+<tr><td>ZoV</td><td>Virgo</td></tr>
+<tr><td>ZoB</td><td>Libra</td></tr>
+<tr><td>ZoS</td><td>Scorpio</td></tr>
+<tr><td>Zos</td><td>Sagittarius</td></tr>
+<tr><td>Zoc</td><td>Capricorn</td></tr>
+</table>
+<p>Chinese astrological signs:</p>
+<table>
+<tr><td>ZoR</td><td>Rat</td></tr>
+<tr><td>ZoO</td><td>Ox</td></tr>
+<tr><td>Zot</td><td>Tiger</td></tr>
+<tr><td>Zor</td><td>Rabbit</td></tr>
+<tr><td>ZoD</td><td>Dragon</td></tr>
+<tr><td>ZoK</td><td>Snake</td></tr>
+<tr><td>ZoH</td><td>Horse</td></tr>
+<tr><td>Zob</td><td>Sheep/Goat</td></tr>
+<tr><td>ZoM</td><td>Monkey</td></tr>
+<tr><td>Zoo</td><td>Rooster</td></tr>
+<tr><td>Zod</td><td>Dog</td></tr>
+<tr><td>Zop</td><td>Pig</td></tr>
+</table>
+
+<h3 id="rl">rl — Religion</h3>
+<p>Your religious affiliation. You can have more than one, following the ampersand notation. Submit additions to this section (with proof of existence and notability) to the maintainer. Current list:</p>
+<table>
+<tr><td>rlC</td><td>Christian</td></tr>
+<tr><td>rlI</td><td>Muslim</td></tr>
+<tr><td>rlH</td><td>Hindu</td></tr>
+<tr><td>rlB</td><td>Buddhist</td></tr>
+<tr><td>rlS</td><td>Sikh</td></tr>
+<tr><td>rlY</td><td>Yoruba</td></tr>
+<tr><td>rlJ</td><td>Jewish</td></tr>
+<tr><td>rlj</td><td>Jainist</td></tr>
+<tr><td>rls</td><td>Shintoist</td></tr>
+<tr><td>rlN</td><td>Neo-pagan</td></tr>
+<tr><td>rlL</td><td>Scientologist</td></tr>
+<tr><td>rlR</td><td>Rastafarian</td></tr>
+<tr><td>rlZ</td><td>Zoroastrian</td></tr>
+<tr><td>rlD</td><td>Discordian</td></tr>
+<tr><td>rlG</td><td>Gravitist</td></tr>
+<tr><td>rlF</td><td>Jedi</td></tr>
+<tr><td>rlM</td><td>Flying Spaghetti Monster</td></tr>
+<tr><td>rlh</td><td>Humanist</td></tr>
+<tr><td>rlb</td><td>Church of the SubGenius</td></tr>
+<tr><td>rl?</td><td>Agnostic</td></tr>
+<tr><td>rl!</td><td>Atheist</td></tr>
+<tr><td>rl&lt;</td><td>Self</td></tr>
+<tr><td>rlO</td><td>Other, please specify with a period</td></tr>
+</table>
+<!-- rlG Gravitism doesn't exist. rlb Church of the SubGenius is not notable enough -->
+
+
+<h3 id="la">LA — Language</h3>
+<p>Languages you speak. This part of the specification is loosely based on the <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO-639-2 standard</a>. Fluency is specified using the bracket notation on an <a href="http://www.ielts.org/format.htm#results">IELTS numeric scale</a>, where <em>(1)</em> would mean knowing a few menu items, swear words and likely being able to find a restaurant and the bathroom and <em>(9)</em> would imply perfect fluency. Use the latter with care, as even native speakers might not qualify for "perfect" fluency under certain circumstances. The specific dialect spoken may be specified with the period notation. Current list:</p>
+<!-- TODO: make it match ISO 639-2 better --> 
+<table>
+<tr><td>LAAA</td><td>Afar</td></tr>
+<tr><td>LAAB</td><td>Abkhazian</td></tr>
+<tr><td>LAAF</td><td>Afrikaans</td></tr>
+<tr><td>LAAM</td><td>Amharic</td></tr>
+<tr><td>LAAR</td><td>Arabic</td></tr>
+<tr><td>LAAS</td><td>Assamese</td></tr>
+<tr><td>LAAY</td><td>Aymara</td></tr>
+<tr><td>LAAZ</td><td>Azerbaijani</td></tr>
+<tr><td>LABA</td><td>Bashkir</td></tr>
+<tr><td>LABE</td><td>Byelorussian</td></tr>
+<tr><td>LABG</td><td>Bulgarian</td></tr>
+<tr><td>LABH</td><td>Bihari</td></tr>
+<tr><td>LABI</td><td>Bislama</td></tr>
+<tr><td>LABN</td><td>Bengali</td></tr>
+<tr><td>LABO</td><td>Tibetan</td></tr>
+<tr><td>LABR</td><td>Breton</td></tr>
+<tr><td>LACA</td><td>Catalan</td></tr>
+<tr><td>LACO</td><td>Corsican</td></tr>
+<tr><td>LACS</td><td>Czech</td></tr>
+<tr><td>LACY</td><td>Welsh</td></tr>
+<tr><td>LADA</td><td>Danish</td></tr>
+<tr><td>LADE</td><td>German</td></tr>
+<tr><td>LADZ</td><td>Bhutani</td></tr>
+<tr><td>LAEL</td><td>Greek</td></tr>
+<tr><td>LAEN</td><td>English</td></tr>
+<tr><td>LAEO</td><td>Esperanto</td></tr>
+<tr><td>LAES</td><td>Spanish</td></tr>
+<tr><td>LAET</td><td>Estonian</td></tr>
+<tr><td>LAEU</td><td>Basque</td></tr>
+<tr><td>LAFA</td><td>Persian</td></tr>
+<tr><td>LAFI</td><td>Finnish</td></tr>
+<tr><td>LAFJ</td><td>Fiji</td></tr>
+<tr><td>LAFO</td><td>Faeroese</td></tr>
+<tr><td>LAFR</td><td>French</td></tr>
+<tr><td>LAFY</td><td>Frisian</td></tr>
+<tr><td>LAGA</td><td>Irish</td></tr>
+<tr><td>LAGD</td><td>Gaelic</td></tr>
+<tr><td>LAGL</td><td>Galician</td></tr>
+<tr><td>LAGN</td><td>Guarani</td></tr>
+<tr><td>LAGU</td><td>Gujarati</td></tr>
+<tr><td>LAHA</td><td>Hausa</td></tr>
+<tr><td>LAHI</td><td>Hindi</td></tr>
+<tr><td>LAHR</td><td>Croatian</td></tr>
+<tr><td>LAHU</td><td>Hungarian</td></tr>
+<tr><td>LAHY</td><td>Armenian</td></tr>
+<tr><td>LAIA</td><td>Interlingua</td></tr>
+<tr><td>LAIE</td><td>Interlingue</td></tr>
+<tr><td>LAIK</td><td>Inupiak</td></tr>
+<tr><td>LAIN</td><td>Indonesian</td></tr>
+<tr><td>LAIS</td><td>Icelandic</td></tr>
+<tr><td>LAIT</td><td>Italian</td></tr>
+<tr><td>LAIW</td><td>Hebrew</td></tr>
+<tr><td>LAJA</td><td>Japanese</td></tr>
+<tr><td>LAJI</td><td>Yiddish</td></tr>
+<tr><td>LAJW</td><td>Javanese</td></tr>
+<tr><td>LAKA</td><td>Georgian</td></tr>
+<tr><td>LAKI</td><td>Klingon</td></tr>
+<tr><td>LAKK</td><td>Kazakh</td></tr>
+<tr><td>LAKL</td><td>Greenlandic</td></tr>
+<tr><td>LAKM</td><td>Cambodian</td></tr>
+<tr><td>LAKN</td><td>Kannada</td></tr>
+<tr><td>LAKO</td><td>Korean</td></tr>
+<tr><td>LAKS</td><td>Kashmiri</td></tr>
+<tr><td>LAKU</td><td>Kurdish</td></tr>
+<tr><td>LAKY</td><td>Kirghiz</td></tr>
+<tr><td>LALA</td><td>Latin</td></tr>
+<tr><td>LALN</td><td>Lingala</td></tr>
+<tr><td>LALO</td><td>Laothian</td></tr>
+<tr><td>LALT</td><td>Lithuanian</td></tr>
+<tr><td>LALV</td><td>Latvian</td></tr>
+<tr><td>LAMG</td><td>Malagasy</td></tr>
+<tr><td>LAMI</td><td>Maori</td></tr>
+<tr><td>LAMK</td><td>Macedonian</td></tr>
+<tr><td>LAML</td><td>Malayalam</td></tr>
+<tr><td>LAMN</td><td>Mongolian</td></tr>
+<tr><td>LAMO</td><td>Moldavian</td></tr>
+<tr><td>LAMR</td><td>Marathi</td></tr>
+<tr><td>LAMS</td><td>Malay</td></tr>
+<tr><td>LAMT</td><td>Maltese</td></tr>
+<tr><td>LAMY</td><td>Burmese</td></tr>
+<tr><td>LANA</td><td>Nauru</td></tr>
+<tr><td>LANE</td><td>Nepali</td></tr>
+<tr><td>LANL</td><td>Dutch</td></tr>
+<tr><td>LANO</td><td>Norwegian</td></tr>
+<tr><td>LAOC</td><td>Occitan</td></tr>
+<tr><td>LAOM</td><td>Oromo</td></tr>
+<tr><td>LAOR</td><td>Oriya</td></tr>
+<tr><td>LAPA</td><td>Punjabi</td></tr>
+<tr><td>LAPL</td><td>Polish</td></tr>
+<tr><td>LAPS</td><td>Pashto</td></tr>
+<tr><td>LAPT</td><td>Portuguese</td></tr>
+<tr><td>LAQU</td><td>Quechua</td></tr>
+<tr><td>LARM</td><td>Rhaeto-Romance</td></tr>
+<tr><td>LARN</td><td>Kirundi</td></tr>
+<tr><td>LARO</td><td>Romanian</td></tr>
+<tr><td>LARU</td><td>Russian</td></tr>
+<tr><td>LARW</td><td>Kinyarwanda</td></tr>
+<tr><td>LASA</td><td>Sanskrit</td></tr>
+<tr><td>LASD</td><td>Sindhi</td></tr>
+<tr><td>LASG</td><td>Sangro</td></tr>
+<tr><td>LASH</td><td>Serbo-Croatian</td></tr>
+<tr><td>LASI</td><td>Singhalese</td></tr>
+<tr><td>LASK</td><td>Slovak</td></tr>
+<tr><td>LASL</td><td>Slovenian</td></tr>
+<tr><td>LASM</td><td>Samoan</td></tr>
+<tr><td>LASN</td><td>Shona</td></tr>
+<tr><td>LASO</td><td>Somali</td></tr>
+<tr><td>LASQ</td><td>Albanian</td></tr>
+<tr><td>LASR</td><td>Serbian</td></tr>
+<tr><td>LASS</td><td>Siswati</td></tr>
+<tr><td>LAST</td><td>Sesotho</td></tr>
+<tr><td>LASU</td><td>Sudanese</td></tr>
+<tr><td>LASV</td><td>Swedish</td></tr>
+<tr><td>LASW</td><td>Swahili</td></tr>
+<tr><td>LATA</td><td>Tamil</td></tr>
+<tr><td>LATE</td><td>Tegulu</td></tr>
+<tr><td>LATG</td><td>Tajik</td></tr>
+<tr><td>LATH</td><td>Thai</td></tr>
+<tr><td>LATI</td><td>Tigrinya</td></tr>
+<tr><td>LATK</td><td>Turkmen</td></tr>
+<tr><td>LATL</td><td>Tagalog</td></tr>
+<tr><td>LATN</td><td>Setswana</td></tr>
+<tr><td>LATO</td><td>Tonga</td></tr>
+<tr><td>LATR</td><td>Turkish</td></tr>
+<tr><td>LATS</td><td>Tsonga</td></tr>
+<tr><td>LATT</td><td>Tatar</td></tr>
+<tr><td>LATW</td><td>Twi</td></tr>
+<tr><td>LAUK</td><td>Ukrainian</td></tr>
+<tr><td>LAUR</td><td>Urdu</td></tr>
+<tr><td>LAUZ</td><td>Uzbek</td></tr>
+<tr><td>LAVI</td><td>Vietnamese</td></tr>
+<tr><td>LAVO</td><td>Volapuk</td></tr>
+<tr><td>LAWO</td><td>Wolof</td></tr>
+<tr><td>LAXH</td><td>Xhosa</td></tr>
+<tr><td>LAYO</td><td>Yoruba</td></tr>
+<tr><td>LAZH</td><td>Chinese</td></tr>
+<tr><td>LAZU</td><td>Zulu</td></tr>
+<tr><td>LAAL</td><td>Artifical language not listed (specify which with a period)</td></tr>
+</table>
+<!-- SL/GS/LL/XS/XG/GG - sign language; ZM - zamgrh, zombie speech, LA* - omnilingual -->
+
+<h3 id="ed">Ed — Education</h3>
+<p>Describes your formal (or informal, if that's your shtick) education. Specify the level of accomplishment with the bracket notation and the specific area of expertise with the period notation. Possible values:</p>
+<table>
+<tr><td>Eda</td><td>Arts</td></tr>
+<tr><td>Edb</td><td>Finance and banking</td></tr>
+<tr><td>Edm</td><td>Construction and manufacturing</td></tr>
+<tr><td>Ede</td><td>Education</td></tr>
+<tr><td>EdE</td><td>Engineering</td></tr>
+<tr><td>Eds</td><td>Science</td></tr>
+<tr><td>Edc</td><td>Computing</td></tr>
+<tr><td>Edh</td><td>Health</td></tr>
+<tr><td>Edp</td><td>Philosophy</td></tr>
+<tr><td>EdM</td><td>Military</td></tr>
+<tr><td>Edl</td><td>Law</td></tr>
+<tr><td>Edg</td><td>Government</td></tr>
+<tr><td>Edd</td><td>Media</td></tr>
+<tr><td>Edn</td><td>Nature</td></tr>
+<tr><td>Edr</td><td>Recreation and leisure</td></tr>
+<tr><td>EdS</td><td>Sales</td></tr>
+<tr><td>Edt</td><td>Transportation</td></tr>
+<tr><td>Ed!</td><td>None</td></tr>
+<tr><td>EdO</td><td>Other</td></tr>
+<tr><td>Ed?</td><td>I think I know something but I'm not sure what</td></tr>
+</table>
+<!-- Ed* - master of everything, jack of all trades -->
+
+<h3 id="cr">Cr — Career</h3>
+<p>Describes your profession or primary source(s) of income. Specify the level of accomplishment with the bracket notation and the specific area of expertise with the period notation. Possible values:</p>
+<table>
+<tr><td>Cra</td><td>Arts</td></tr>
+<tr><td>Crb</td><td>Finance and banking</td></tr>
+<tr><td>Crm</td><td>Construction and manufacturing</td></tr>
+<tr><td>Cre</td><td>Education</td></tr>
+<tr><td>CrE</td><td>Engineering</td></tr>
+<tr><td>Crs</td><td>Science</td></tr>
+<tr><td>Crc</td><td>Computing</td></tr>
+<tr><td>Crh</td><td>Health</td></tr>
+<tr><td>Crp</td><td>Philosophy</td></tr>
+<tr><td>CrM</td><td>Military</td></tr>
+<tr><td>Crl</td><td>Law</td></tr>
+<tr><td>Crg</td><td>Government</td></tr>
+<tr><td>Crd</td><td>Media</td></tr>
+<tr><td>Crn</td><td>Nature</td></tr>
+<tr><td>Crr</td><td>Recreation and leisure</td></tr>
+<tr><td>CrS</td><td>Sales</td></tr>
+<tr><td>Crt</td><td>Transportation</td></tr>
+<tr><td>CrH</td><td>Home-worker</td></tr>
+<tr><td>CrL</td><td>Student</td></tr>
+<tr><td>Cr!</td><td>Unemployed</td></tr>
+<tr><td>CrR</td><td>Retired</td></tr>
+<tr><td>Cr$</td><td>Independently wealthy</td></tr>
+<tr><td>CrP</td><td>Part-time or temporary "odd jobs"</td></tr>
+<tr><td>CrO</td><td>Other</td></tr>
+<tr><td>Cr?</td><td>Money arrives from somewhere</td></tr>
+</table>
+
+<h3 id="hb">Hb — Hobbies</h3>
+<p>A free-form description of what you like to do in your free time. There are no special rules here, apart from the usual notation guidelines. Examples:</p>
+<table>
+<tr><td>HbMotorbikes</td><td>Motorbikes</td></tr>
+<tr><td>HbGaming.PC.FPS</td><td>Gaming in a very specific way (first person shooters on the PC)</td></tr>
+<tr><td>HbDancing&amp;TV.CSI;House_MD</td><td>Dancing and watching specific TV series</td></tr>
+</table>
+
+<h3 id="pl">Pl — Political Leanings</h3>
+<p>Describes your political leanings. Current possible values:</p>
+<table>
+<tr><td>PlC</td><td>Communist</td></tr>
+<tr><td>Plm</td><td>Marxist</td></tr>
+<tr><td>Pln</td><td>Leninist</td></tr>
+<tr><td>PlD</td><td>Democrat</td></tr>
+<tr><td>PlR</td><td>Republican</td></tr>
+<tr><td>PlL</td><td>Labor</td></tr>
+<tr><td>PlT</td><td>Tory</td></tr>
+<tr><td>PlG</td><td>Green</td></tr>
+<tr><td>Pll</td><td>Libertarian</td></tr>
+<tr><td>Pl{L}</td><td>Left/Liberal</td></tr>
+<tr><td>Pl{R}</td><td>Right/Conservative</td></tr>
+<tr><td>Pl{L}.Far</td><td>Far left</td></tr>
+<tr><td>PlM</td><td>Moderate or Centrist</td></tr>
+<tr><td>Pl!</td><td>Anarchist</td></tr>
+<tr><td>PlO</td><td>Other (please specify with a period, i.e., <em>PlO.Theocrat</em>)</td></tr>
+</table>
+
+<h3 id="mv">Mv — Transportation Method</h3>
+<p>Describes your usual method of transportation. Possible values:</p>
+<table>
+<tr><td>MvD</td><td>Driving</td></tr>
+<tr><td>MvW</td><td>Walking</td></tr>
+<tr><td>MvS</td><td>Scooter</td></tr>
+<tr><td>Mvs</td><td>'Segway'</td></tr>
+<tr><td>MvM</td><td>Motorbike</td></tr>
+<tr><td>MvB</td><td>Public transit</td></tr>
+<tr><td>MvH</td><td>Hired transport (i.e., taxi, limo)</td></tr>
+<tr><td>MvL</td><td>School bus</td></tr>
+<tr><td>MvA</td><td>Vehicle capable of air travel</td></tr>
+<tr><td>MvQ</td><td>Vehicle capable of water travel</td></tr>
+<tr><td>Mv-</td><td>Wheelchair</td></tr>
+<tr><td>MvO</td><td>Other (specify with period, i.e., <em>MvD.Car.Ford_Aspire</em>)</td></tr>
+</table>
+
+<h3 id="rls">Rl — Relationship Status</h3>
+<p>Describes your relationship (marital) status. Possible values:</p>
+<table>
+<tr><td>RlM</td><td>Married</td></tr>
+<tr><td>RlC</td><td>Living together or common law</td></tr>
+<tr><td>RlE</td><td>Engaged</td></tr>
+<tr><td>RlD</td><td>Dating</td></tr>
+<tr><td>RlW</td><td>Widow(er)</td></tr>
+<tr><td>RlP</td><td>Polygamous</td></tr>
+<tr><td>Rlx</td><td>Divorced</td></tr>
+<tr><td>Rl!</td><td>Single</td></tr>
+<tr><td>Rl+</td><td>Seeking</td></tr>
+<tr><td>Rl-</td><td>Not seeking</td></tr>
+<tr><td>RlD&amp;+</td><td>Divorced and seeking</td></tr>
+</table>
+
+<h3 id="kd">Kd — Children</h3>
+<p>Describes children you consider "yours". The general format is <em>Kd[n][g]...</em>, where <em>'n'</em> is the number and <em>'g'</em> is the gender. Further specification is possible using the period notation. An example would be <em>Kd2x1y.brats</em> (someone with two girls and a boy who are prone to misbehave). Additional parameters:</p>
+<table>
+<tr><td>Kd!</td><td>No kids</td></tr>
+<tr><td>Kd?</td><td>Possible kids somewhere</td></tr>
+<tr><td>Kd&gt;</td><td>Expecting kids</td></tr>
+<tr><td>Kd*</td><td>Too many kids</td></tr>
+<tr><td>Kd+</td><td>Someone else's kids (stepchildren)</td></tr>
+<tr><td>Kd!.Never</td><td>Resolved to not have any kids</td></tr>
+</table>
+
+<h3 id="pe">Pe — Pets</h3>
+<p>Describes any pets you might have. The general groups (as well as some specifics, for simplicity's sake) are:</p>
+<table>
+<tr><td>PeA</td><td>Amphibian (frog, salamander etc.)</td></tr>
+<tr><td>PeB</td><td>Avian (a bird)</td></tr>
+<tr><td>PeN</td><td>Arachnoid</td></tr>
+<tr><td>PeI</td><td>Insect</td></tr>
+<tr><td>PeR</td><td>Reptile</td></tr>
+<tr><td>Per</td><td>Rodent</td></tr>
+<tr><td>PeF</td><td>Fish</td></tr>
+<tr><td>PeM</td><td>Mollusk (clam, snail, scallop, squid etc.)</td></tr>
+<tr><td>PeP</td><td>Plant</td></tr>
+<tr><td>PeO</td><td>Other, please specify with a period</td></tr>
+<tr><td>PeC</td><td>Cat</td></tr>
+<tr><td>PeD</td><td>Dog</td></tr>
+<tr><td>PeS</td><td>Snake</td></tr>
+<tr><td>PeH</td><td>Hare or rabbit</td></tr>
+<tr><td>PeT</td><td>Rat</td></tr>
+</table>
+<!-- PeK - Rock -->
+
+<h3 id="mb">MB — Myers-Briggs Personality Type</h3>
+<p>Indicates your <a href="http://en.wikipedia.org/wiki/Myers-Briggs_Type_Indicator">Myers-Briggs personality type</a>. Your personality type can be determined using one (or more) of the many online personality tests available: <a href="http://humanmetrics.com/cgi-win/jtypes2.asp">[1]</a>, <a href="http://similarminds.com/embj.html">[2]</a>, <a href="http://personality-testing.info/tests/JUNG.php">[3]</a>. Additional modifiers can be added using the period notation (i.e., <em>MBINTP.Extreme_introvert</em>). Possible values:</p>
+<table>
+<tr><td>MBENFP</td><td>MBINFP</td><td>MBENFJ</td><td>MBINFJ</td></tr>
+<tr><td>MBENTP</td><td>MBINTP</td><td>MBENTJ</td><td>MBINTJ</td></tr>
+<tr><td>MBESTJ</td><td>MBISTJ</td><td>MBESFJ</td><td>MBISFJ</td></tr>
+<tr><td>MBESTP</td><td>MBISTP</td><td>MBESFP</td><td>MBISFP</td></tr>
+</table>
+<!-- Think about the presentation of this for a bit -->
+
+<h3 id="fh">FH — Facial Hair</h3>
+<p>Describes your facial hair. You may omit this code if having facial hair would be very strange for you indeed. Specify further using the period notation. Possible values:</p>
+<table>
+<tr><td>FHb</td><td>Full beard</td></tr>
+<tr><td>FHg</td><td>Goatee</td></tr>
+<tr><td>FHp</td><td>Soul patch</td></tr>
+<tr><td>FHm</td><td>Mustache</td></tr>
+<tr><td>FHs</td><td>Sideburns</td></tr>
+<tr><td>FHS</td><td>Stubble</td></tr>
+<tr><td>FH!</td><td>No facial hair</td></tr>
+<tr><td>FHO</td><td>Other, please elaborate</td></tr>
+<tr><td>FHm.Handlebar</td><td>Handlebar mustache</td></tr>
+</table>
+
+<h3 id="ba">BA — Body Adornments</h3>
+<p>Describes any permanent or semi-permanent body adornments you might have. You may chain as many of those as you wish and be as elaborate as you like using the ampersand, semicolon and period joining. A fairly elaborate example would be <em>BAT.Shoulder.Bird&amp;T.Ankle.Chain&amp;P.Ears;Belly&amp;I</em>. Possible values:</p>
+<table>
+<tr><td>BAT</td><td>Tatoo</td></tr>
+<tr><td>BAP</td><td>Piercing</td></tr>
+<tr><td>BAB</td><td>Branding</td></tr>
+<tr><td>BAS</td><td>Scarring</td></tr>
+<tr><td>BAI</td><td>Implants</td></tr>
+<tr><td>BAl</td><td>Stretching</td></tr>
+<tr><td>BAO</td><td>Other, please elaborate</td></tr>
+</table>
+
+<h3 id="in">IN — Internet Use</h3>
+<p>Indicates time spent on the Internet each day in hours. Type or speed of connection can be added with a trailing period modifier. The usual modifiers apply as well.</p>
+<table>
+<tr><td>IN16.Cable</td><td>I use cable</td></tr>
+<tr><td>IN!</td><td>I don't use the Internet</td></tr>
+<tr><td>IN?</td><td>Internet? What's that?</td></tr>
+<tr><td>IN2.Workdays&amp;16.Weekends</td><td>2 hours on workdays and 16 on weekends</td></tr>
+</table>
+
+<h3 id="ad">Ad — Addictions</h3>
+<p>The addictions you are willing to admit having. Further specification can be indicated using the period notation (i.e. <em>AdC.Tea.Earl_Grey.Hot</em>).<p>
+<p>The list doesn't include things admitting which can get you in trouble with the law.</p>
+<table>
+<tr><td>AdC</td><td>Caffeine</td></tr>
+<tr><td>AdN</td><td>Nicotine</td></tr>
+<tr><td>AdM</td><td>Marijuana</td></tr>
+<tr><td>AdA</td><td>Alcohol</td></tr>
+<tr><td>AdI</td><td>Internet</td></tr>
+<tr><td>AdG</td><td>Gambling</td></tr>
+<tr><td>AdS</td><td>Sex</td></tr>
+<tr><td>Ad+</td><td>More than I can fit here</td></tr>
+<tr><td>Ad*</td><td>Everything</td></tr>
+<tr><td>Ad!</td><td>No addictions</td></tr>
+<tr><td>Ad?</td><td>Addicted? Me?</td></tr>
+<tr><td>AdO</td><td>Other (i.e. <em>AdO.Chocolate</em>)</td></tr>
+</table>
+
+<h3 id="pr">Pr — Programming Languages</h3>
+<p>Describes languages you program in. This is a simplified notation; just write the code followed by whatever programming language you use. Add modifiers as necessary. Examples:</p>
+<table>
+<tr><td>Pr?</td><td>Programming? What's that?</td></tr>
+<tr><td>Pr!</td><td>I don't do programming.</td></tr>
+<tr><td>Pr*</td><td>I program in all languages</td></tr>
+<tr><td>PrPascal</td><td>Pascal</td></tr>
+<tr><td>PrPascal.Turbo</td><td>Turbo Pascal</td></tr>
+<tr><td>PrPascal.Delphi</td><td>Delphi (Object Pascal)</td></tr>
+<tr><td>PrPHP</td><td>PHP</td></tr>
+<tr><td>PrPerl</td><td>Perl</td></tr>
+<tr><td>PrPython</td><td>Python</td></tr>
+<tr><td>PrBASIC</td><td>BASIC</td></tr>
+<tr><td>PrBASIC.Visual</td><td>Visual Basic</td></tr>
+<tr><td>PrC</td><td>C</td></tr>
+<tr><td>PrC++</td><td>C++</td></tr>
+<tr><td>PrC#</td><td>C Sharp</td></tr>
+<tr><td>PrHTML</td><td>HTML</td></tr>
+<tr><td>PrXML</td><td>XML</td></tr>
+<tr><td>PrCOBOL</td><td>COBOL</td></tr>
+<tr><td>PrJava</td><td>Java</td></tr>
+<tr><td>PrJavaScript</td><td>JavaScript</td></tr>
+<tr><td>PrLisp</td><td>Lisp</td></tr>
+<tr><td>PrSGML</td><td>SGML</td></tr>
+<tr><td>PrRuby</td><td>Ruby</td></tr>
+<tr><td>PrRuby.on_Rails</td><td>Ruby on Rails</td></tr>
+</table>
+
+<h3 id="uf">UF — UserFriendly Connection</h3>
+<p>This code is depreciated and its use is discouraged. The reason is: UserFriendly is (was?) a local phenomenon. OmniCode strives for Internet-wide recognition.</p>
+<p>OmniCode processing tool authors may display a depreciation notice with the decoding or ignore this code altogether.</p>
+<h2 id="changes">Change Log</h2>
+<ul>
+<li><strong>Version 1.8</strong><ul>
+<li>Maintainer change. Special thanks to the previous maintainer, <a href="http://gadgeteer.net">Greg W. Webster</a>, for keeping it in such good condition.</li>
+<li>General rewrite for increased clarity and readability.</li>
+<li>An obvious error in the <a href="#mv"><em>Mv — Transportation Method</em></a> section was fixed ("Mv-" and "MvO" had their definitions swapped).</li>
+<li>An inconsistency in the <a href="#fh"><em>FH — Facial Hair</em></a> section was corrected. "FHo" ("other") is now "FHO", in line with the rest of the specification.</li>
+<li>The <a href="#uf"><em>UF — UserFriendly Connection</em></a> section has been depreciated.
+</ul>
+</ul>
